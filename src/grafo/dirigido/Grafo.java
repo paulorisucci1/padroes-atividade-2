@@ -550,13 +550,13 @@ public class Grafo<T> {
 	private class GrafoIteratorDFS implements GrafoIterator<T> {
 
 		private Stack<Vertice<T>> pilha;
-		private boolean[] vertiesVisitados;
+		private boolean[] indicesVisitados;
 
 		public GrafoIteratorDFS(Vertice<T> verticeInicial) {
 			pilha = new Stack<>();
-			vertiesVisitados = new boolean[vertices.size()];
+			indicesVisitados = new boolean[vertices.size()];
 			pilha.push(verticeInicial);
-			vertiesVisitados[vertices.indexOf(verticeInicial)] = true;
+			indicesVisitados[vertices.indexOf(verticeInicial)] = true;
 		}
 
 		@Override
@@ -567,9 +567,9 @@ public class Grafo<T> {
 			Vertice<T> verticeAtual = pilha.pop();
 			List<Vertice<T>> vizinhos = incidentes(verticeAtual);
 			for(Vertice<T> vizinho : vizinhos) {
-				if(!vertiesVisitados[vertices.indexOf(vizinho)]) {
+				if(!indicesVisitados[vertices.indexOf(vizinho)]) {
 					pilha.push(vizinho);
-					vertiesVisitados[vertices.indexOf(vizinho)] = true;
+					indicesVisitados[vertices.indexOf(vizinho)] = true;
 				}
 			}
 			return verticeAtual;
